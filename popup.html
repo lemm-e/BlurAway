@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlurAwayt</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlurAway</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="popup.js" defer></script>
 </head>
+
 <body>
-    
+  <div class="card">
+    <h2>BlurAway</h2>
+    <div class="toggle-container">
+      <button id="toggleBlur" class="toggle-button">
+      </button>
+    </div>
+    <div class="slider-container">
+      <input type="range" min="1" max="10" value="0" class="slider" id="blurSlider" />
+    </div>
+    <div class="input-container">
+      <input type="text" id="domainInput" placeholder="Enter domain to ignore" />
+      <button id="addDomainButton">Add</button>
+    </div>
+    <div class="domain-container">
+      <h4>Ignored Domains</h4>
+      <div class="domain-list" id="domainList">
+        <!-- Domain list will be added here dynamically -->
+      </div>
+    </div>
+    <div>
+      <div class="deleteAllButton-container">
+        <button id="deleteAllButton">Delete All</button>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>
