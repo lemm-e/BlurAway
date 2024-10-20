@@ -19,7 +19,7 @@ function applyBlur(blurPercentage) {
         currentDomain.endsWith("." + ignoredDomain)
     );
     if (blurEnabled && !isIgnored) {
-      document.body.style.filter = `blur(${blurPercentage* 4}px)`;
+      document.body.style.filter = `blur(${blurPercentage * 4}px)`;
     }
   });
 }
@@ -29,7 +29,13 @@ function removeBlur() {
 }
 
 function handleMouseEvents(blurPercentage) {
-  document.addEventListener("mouseleave", () => applyBlur(blurPercentage));
+  document.addEventListener("mouseleave", () => {
+    storage.get("blurEnabled", (data) => {
+      if (data.blurEnabled) {
+        applyBlur(blurPercentage);
+      }
+    });
+  });
   document.addEventListener("mouseenter", removeBlur);
 }
 
@@ -41,7 +47,9 @@ storage.get("blurPercentage", (data) => {
 
 storage.onChanged.addListener((changes) => {
   if (changes.blurPercentage) {
-    applyBlur(changes.blurPercentage.newValue);
+    const newBlurPercentage = changes.blurPercentage.newValue;
+    applyBlur(newBlurPercentage);
+    handleMouseEvents(newBlurPercentage);
   }
 });
 
