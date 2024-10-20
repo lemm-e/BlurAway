@@ -143,10 +143,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   storage.get("blurEnabled", (data) => updateToggleButton(data.blurEnabled));
-  storage.get(
-    "blurPercentage",
-    (data) => (blurSlider.value = data.blurPercentage || 1)
-  );
+  storage.get("blurPercentage", (data) => {
+    blurSlider.value =
+      data.blurPercentage !== undefined ? data.blurPercentage : 1;
+  });
 
   blurSlider.addEventListener("input", () => {
     const blurPercentage = blurSlider.value;
